@@ -27,21 +27,22 @@ these are put into the Maven settings, which are usually located at `~/.m2/setti
 
 As credentials, you'll be using a user token:
 1. go to [your account](https://central.sonatype.com/account) on the Central Publisher Portal
-2. click the button "Generate User Token"
-3. copy the code snippet
-4. add it to your existing Maven settings, or create a new file with
-    <?xml version="1.0" encoding="UTF-8"?>
-    <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-      <servers>
-        <server>
-          <id>central</id>
-          <username>...</username>
-          <password>...</password>
-        </server>
-      </servers>
-   </settings>
+1. click the button "Generate User Token"
+1. copy the code snippet
+1. add it to your existing Maven settings, or create a new file containing
+    
+       <?xml version="1.0" encoding="UTF-8"?>
+       <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+         <servers>
+           <server>
+             <id>central</id>
+             <username>...</username>
+             <password>...</password>
+           </server>
+         </servers>
+       </settings>
 
 ### Set up artifact signing
 Since you're using a Linux machine, `gpg` should be available.
