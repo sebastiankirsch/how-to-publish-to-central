@@ -48,11 +48,14 @@ As credentials, you'll be using a user token:
 Since you're using a Linux machine, `gpg` should be available.
 
 1. create a key pair:
-       gpg --batch --passphrase '' --quick-gen-key "your-username <your-username@users.noreply.github.com>"
+
+       gpg --batch --passphrase '' --quick-gen-key "$USER <your-username@users.noreply.github.com>"
 1. Note down the key ID
+
        gpg -k your-username@users.noreply.github.com
 1. Distribute your public key
-   gpg --keyserver keys.openpgp.org --send-keys YOUR-KEYID
+
+       gpg --keyserver keys.openpgp.org --send-keys YOUR-KEYID
 
 > [!TIP]
 > Since I'm usually using GitHub actions to publish, and thus I have to "hand out" both key & passphrase anyway,
