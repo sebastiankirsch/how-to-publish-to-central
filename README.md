@@ -1,11 +1,11 @@
 # How to publish to Maven Central
-_as of June 2024_; based on material from [maven central](https://central.sonatype.org/register/central-portal/).
+_as of June 2024_; based on material from [maven central](https://central.sonatype.org/register/central-portal/)
 
 ## Prerequisites
 This guide aims at making it as easy as possible for you to publish your first artifact.  
 While it's absolutely possible to deviate from this approach, this guide assumes you're in possession of: 
 * a GitHub account
-* a Linux machine for development (This example is based on Ubuntu)
+* a Linux machine for development (this example has been created with Ubuntu)
 * and a Maven-based project waiting to be published
 
 ## Step-by-step guide
