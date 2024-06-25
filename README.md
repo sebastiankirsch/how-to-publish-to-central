@@ -1,5 +1,5 @@
 # How to publish to Maven Central
-_as of June 2024_; based on material found on [maven central](https://central.sonatype.org/register/central-portal/).
+_as of June 2024_; based on material from [maven central](https://central.sonatype.org/register/central-portal/).
 
 ## Prerequisites
 This guide aims at making it as easy as possible for you to publish your first artifact.  
