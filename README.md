@@ -5,7 +5,7 @@ _as of June 2024_; based on material found on [maven central](https://central.so
 This guide aims at making it as easy as possible for you to publish your first artifact.  
 While it's certainly possible to deviate from this approach, this guide assumes you're in possession of: 
 * a GitHub account
-* a Linux machine for development
+* a Linux machine for development (This example is based on Ubuntu)
 * and a Maven-based project waiting to be published
 
 ## Step-by-step guide
@@ -47,9 +47,12 @@ As credentials, you'll be using a user token:
 ### Set up artifact signing
 Since you're using a Linux machine, `gpg` should be available.
 
-Run `gpg` to create a key pair.
-
-Publish the public key.
+1. create a key pair:
+       gpg --batch --passphrase '' --quick-gen-key "your-username <your-username@users.noreply.github.com>"
+1. Note down the key ID
+       gpg -k your-username@users.noreply.github.com
+1. Distribute your public key
+   gpg --keyserver keys.openpgp.org --send-keys YOUR-KEYID
 
 > [!TIP]
 > Since I'm usually using GitHub actions to publish, and thus I have to "hand out" both key & passphrase anyway,
