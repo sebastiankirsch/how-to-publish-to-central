@@ -21,15 +21,30 @@ allowing you to publish artifacts matching this namespace.
 > Consider renaming the java package names accordingly.
 
 #### Configure Maven settings
-You need to configure the Maven settings such that you can upload artifacts.
-These settings are usually located at `~/.m2/settings.xml`.
-    
+For the artifact publishing, Maven needs access to your credentials.
+Since you don't want to share your credentials by listing them in the project's POM,
+these are put into the Maven settings, which are usually located at `~/.m2/settings.xml`.
+
+As credentials, you'll be using a user token:
+1. go to [your account](https://central.sonatype.com/account) on the Central Publisher Portal
+2. click the button "Generate User Token"
+3. copy the code snippet
+4. add it to your existing Maven settings, or create a new file with
+    <?xml version="1.0" encoding="UTF-8"?>
+    <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+      <servers>
+        <server>
+          <id>central</id>
+          <username>...</username>
+          <password>...</password>
+        </server>
+      </servers>
+   </settings>
 
 ### Set up artifact signing
 Since you're using a Linux machine, `gpg` should be available.
-
-> [!TIP]
-> This is a shameless copy & reduction of [central's guide](https://central.sonatype.org/publish/requirements/gpg/#distributing-your-public-key).
 
 Run `gpg` to create a key pair.
 
