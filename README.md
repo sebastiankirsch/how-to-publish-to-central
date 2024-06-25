@@ -3,13 +3,13 @@ _as of June 2024_; based on material from [maven central](https://central.sonaty
 
 ## Prerequisites
 This guide aims at making it as easy as possible for you to publish your first artifact.  
-While it's certainly possible to deviate from this approach, this guide assumes you're in possession of: 
+While it's absolutely possible to deviate from this approach, this guide assumes you're in possession of: 
 * a GitHub account
 * a Linux machine for development (This example is based on Ubuntu)
 * and a Maven-based project waiting to be published
 
 ## Step-by-step guide
-Typically, one already has a
+
 ### Register at Sonatype central
 Hop on over to [maven central repository](https://central.sonatype.com/api/auth/login), and login via GitHub.
 This registers the **io.github._your-username_** namespace for you,
@@ -18,7 +18,7 @@ allowing you to publish artifacts matching this namespace.
 > [!IMPORTANT]  
 > If you didn't do so yet, adapt the `<groupId>` of your artifact accordingly.
 > You might use `io.github.your-username` or subgroups like `io.github.your-username.foo`.  
-> Consider renaming the java package names accordingly.
+> Consider renaming the package names accordingly.
 
 #### Configure Maven settings
 For the artifact publishing, Maven needs access to your credentials.
