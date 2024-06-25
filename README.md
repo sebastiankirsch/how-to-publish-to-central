@@ -49,17 +49,18 @@ Since you're using a Linux machine, `gpg` should be available.
 
 1. create a key pair:
 
-       gpg --batch --passphrase '' --quick-gen-key "$USER <your-username@users.noreply.github.com>"
-1. Note down the key ID
+       gpg --batch --passphrase '' --quick-gen-key "your-username@users.noreply.github.com"
+1. Note down the keyid (the hexadecimal code, usually the second line)
 
        gpg -k your-username@users.noreply.github.com
 1. Distribute your public key
 
        gpg --keyserver keys.openpgp.org --send-keys YOUR-KEYID
 
-> [!TIP]
-> Since I'm usually using GitHub actions to publish, and thus I have to "hand out" both key & passphrase anyway,
-> I'm not setting up a passphrase in the first place. Do what suits your needs best.
+> [!NOTE]
+> When using GitHub actions to publish, you have to "hand out" both key & passphrase anyway,
+> thus we're using an empty passphrase to begin with.  
+> If you'd rather want to use a passphrase, use `gpg --gen-key` to create a key.
 
 ### Configure your project
 ### Releasing
