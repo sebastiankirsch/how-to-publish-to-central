@@ -7,6 +7,7 @@ While it's absolutely possible to deviate from this approach, this guide assumes
 * a GitHub account
 * a Linux machine for development (this example has been created with Ubuntu)
 * and a Maven-based project waiting to be published
+  * basic familiarity with Maven
 
 ## Step-by-step guide
 
@@ -63,6 +64,47 @@ Since you're using a Linux machine, `gpg` should be available.
 > If you'd rather want to use a passphrase, use `gpg --gen-key` to create a key.
 
 ### Configure your project
+Now, your Maven project needs to be configured with a number of plugins.
+Personally, I like to configure plugins only 
+
+#### central-publishing-maven-plugin
+We'll start with `central-publishing-maven-plugin`, which will upload the artifacts to the maven central repository: 
+
+```xml
+<plugin>
+  <groupId>org.sonatype.central</groupId>
+  <artifactId>central-publishing-maven-plugin</artifactId>
+  <version>0.5.0</version>
+  <extensions>true</extensions>
+  <configuration>
+    <autoPublish>false</autoPublish>
+    <deploymentName>Release ${project.version}</deploymentName>
+    <waitUntil>validated</waitUntil>
+  </configuration>
+</plugin>
+```
+
+With this in place, we can try out the publish process!
+
+```shell
+mvn -B -ntp deploy
+```
+
+#### maven-release-plugin
+You can safely 
+
+```xml
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-release-plugin</artifactId>
+  <version>3.0.1</version>
+  <configuration>
+    <releaseProfiles>release</releaseProfiles>
+    <tagNameFormat>v@{project.version}</tagNameFormat>
+  </configuration>
+</plugin>
+```
+
 ### Releasing
 #### Manually
 #### via GitHub action
