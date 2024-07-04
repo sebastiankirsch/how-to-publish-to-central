@@ -78,7 +78,7 @@ We'll start with `central-publishing-maven-plugin`, which will upload the artifa
   <extensions>true</extensions>
   <configuration>
     <autoPublish>false</autoPublish>
-    <deploymentName>Release ${project.version}</deploymentName>
+    <deploymentName>${project.artifactId}:${project.version}</deploymentName>
     <waitUntil>validated</waitUntil>
   </configuration>
 </plugin>
