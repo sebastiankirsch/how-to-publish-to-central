@@ -1,5 +1,5 @@
 # How to publish to Maven Central
-_as of June 2024_; based on material from [maven central](https://central.sonatype.org/register/central-portal/)
+_as of June 2024_; based on material from [Maven Central](https://central.sonatype.org/register/central-portal/)
 
 ## Prerequisites
 This guide aims at making it as easy as possible for you to publish your first artifact.  
@@ -12,7 +12,7 @@ While it's absolutely possible to deviate from this approach, this guide assumes
 ## Step-by-step guide
 
 ### Register at Sonatype central
-Hop on over to [maven central repository](https://central.sonatype.com/api/auth/login), and login via GitHub.
+Hop on over to the [Maven Central repository](https://central.sonatype.com/api/auth/login), and login via GitHub.
 This registers the **io.github._your-username_** namespace for you,
 allowing you to publish artifacts matching this namespace.
 
@@ -72,7 +72,7 @@ Now, your Maven project needs to be configured with a number of plugins.
 Personally, I like to configure plugins only 
 
 #### central-publishing-maven-plugin
-We'll start with `central-publishing-maven-plugin`, which will upload the artifacts to the maven central repository:
+We'll start with `central-publishing-maven-plugin`, which will upload the artifacts to the Maven Central repository:
 ```xml
 <plugin>
   <groupId>org.sonatype.central</groupId>
@@ -91,12 +91,12 @@ With this in place, we can try out the publish process!
 mvn -B -ntp deploy
 ```
 This will eventually fail because we're still missing a couple of things,
-yet your [_Deployments_ section](https://central.sonatype.com/publishing/deployments) in the maven central repository
+yet your [_Deployments_ section](https://central.sonatype.com/publishing/deployments) in the Maven Central repository
 should list our attempt to publish something.  
 Go ahead and hit the _Drop_ button.
 
 #### Artifact signing, Javadoc & Sources
-In order to publish to Maven central, you need to sign all artifacts, and ship a Javadoc as well as the sources.
+In order to publish to Maven Central, you need to sign all artifacts, and ship a Javadoc as well as the sources.
 Therefore, we need to configure more plugins:
 ```xml
 <plugins>
