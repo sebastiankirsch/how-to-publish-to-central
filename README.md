@@ -69,7 +69,6 @@ Since you're using a Linux machine, `gpg` should be available.
 
 ### Configure your project
 Now, your Maven project needs to be configured with a number of plugins.
-Personally, I like to configure plugins only 
 
 #### central-publishing-maven-plugin
 We'll start with `central-publishing-maven-plugin`, which will upload the artifacts to the Maven Central repository:
@@ -163,7 +162,7 @@ Sonatype requires you to provide
 * developers information
 * an SCM URL
 
-#### Adapt the version
+### Adapt the version
 The only remaining thing to do is adapt the version, since `SNAPSHOT` versions cannot be released.
 Go ahead and adapt the version. Now if you run the Maven command again, you should have a successful build.
 The [_Deployments_ section][central:deployments] will now show a _Validated_ deployment.
