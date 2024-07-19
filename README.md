@@ -91,7 +91,7 @@ With this in place, we can try out the publish process!
 mvn -B -ntp deploy
 ```
 This will eventually fail because we're still missing a couple of things,
-yet your [_Deployments_ section](https://central.sonatype.com/publishing/deployments) in the Maven Central repository
+yet your [_Deployments_ section][central:deployments] in the Maven Central repository
 should list our attempt to publish something.  
 Go ahead and hit the _Drop_ button.
 
@@ -163,6 +163,14 @@ Sonatype requires you to provide
 * developers information
 * an SCM URL
 
+#### Adapt the version
+The only remaining thing to do is adapt the version, since `SNAPSHOT` versions cannot be released.
+Go ahead and adapt the version. Now if you run the Maven command again, you should have a successful build.
+The [_Deployments_ section][central:deployments] will now show a _Validated_ deployment.
+
+> [!TIP]
+> If you think everything's working out, you can go ahead and publish your artifact now! 🎉 
+
 #### maven-release-plugin
 You can safely 
 
@@ -184,3 +192,4 @@ You can safely
 
 
 [gpg:sign]: https://maven.apache.org/plugins/maven-gpg-plugin/sign-mojo.html
+[central:deployments]: https://central.sonatype.com/publishing/deployments
