@@ -171,8 +171,12 @@ The [_Deployments_ section][central:deployments] will now show a _Validated_ dep
 > [!TIP]
 > If you think everything's working out, you can go ahead and publish your artifact now! 🎉 
 
-#### maven-release-plugin
-You can safely 
+## Automate the release process
+For a more automated release process, we want the version numbering handled and have the released code tagged.
+
+👷 coming soon
+
+### maven-release-plugin
 
 ```xml
 <plugin>
@@ -186,9 +190,8 @@ You can safely
 </plugin>
 ```
 
-### Releasing
-#### Manually
-#### via GitHub action
+## Release with GitHub Actions
+👷 coming soon
 
 [central:account]: https://central.sonatype.com/account
 [central:deployments]: https://central.sonatype.com/publishing/deployments
