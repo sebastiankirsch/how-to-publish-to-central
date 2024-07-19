@@ -98,49 +98,56 @@ Go ahead and hit the _Drop_ button.
 #### Artifact signing, Javadoc & Sources
 In order to publish to Maven central, you need to sign all artifacts, and ship a Javadoc as well as the sources.
 Therefore, we need to configure more plugins:
-
 ```xml
-<plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-gpg-plugin</artifactId>
-  <version>1.6</version>
-  <executions>
-    <execution>
-      <goals>
-        <goal>sign</goal>
-      </goals>
-    </execution>
-  </executions>
-</plugin>
-<plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-javadoc-plugin</artifactId>
-  <version>3.6.3</version>
-  <executions>
-    <execution>
-      <goals>
-        <goal>jar</goal>
-      </goals>
-    </execution>
-  </executions>
-</plugin>
-<plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-source-plugin</artifactId>
-  <version>3.3.1</version>
-  <executions>
-    <execution>
-      <goals>
-        <goal>jar-no-fork</goal>
-      </goals>
-    </execution>
-  </executions>
-</plugin>
+<plugins>
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-gpg-plugin</artifactId>
+    <version>1.6</version>
+    <executions>
+      <execution>
+        <goals>
+          <goal>sign</goal>
+        </goals>
+      </execution>
+    </executions>
+  </plugin>
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-javadoc-plugin</artifactId>
+    <version>3.6.3</version>
+    <executions>
+      <execution>
+        <goals>
+          <goal>jar</goal>
+        </goals>
+      </execution>
+    </executions>
+  </plugin>
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-source-plugin</artifactId>
+    <version>3.3.1</version>
+    <executions>
+      <execution>
+        <goals>
+          <goal>jar-no-fork</goal>
+        </goals>
+      </execution>
+    </executions>
+  </plugin>
+</plugins>
 ```
+
 Now, let's run the deployment process again:
 ```shell
 mvn -B -ntp deploy
 ```
+
+> [!NOTE]
+> Chances are that generating the Javadoc fails.
+> Fix any errors that occur.
+
 #### Add missing information
 
 #### maven-release-plugin
