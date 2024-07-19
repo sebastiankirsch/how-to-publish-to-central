@@ -83,12 +83,62 @@ We'll start with `central-publishing-maven-plugin`, which will upload the artifa
   </configuration>
 </plugin>
 ```
-
 With this in place, we can try out the publish process!
-
 ```shell
 mvn -B -ntp deploy
 ```
+This will eventually fail because we're still missing a couple of things,
+yet your [_Deployments_ section](https://central.sonatype.com/publishing/deployments) in the maven central repository
+should list our attempt to publish something.  
+Go ahead and hit the _Drop_ button.
+
+#### Artifact signing, Javadoc & Sources
+In order to publish to Maven central, you need to sign all artifacts, and ship a Javadoc as well as the sources.
+Therefore, we need to configure more plugins:
+
+```xml
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-gpg-plugin</artifactId>
+  <version>1.6</version>
+  <executions>
+    <execution>
+      <goals>
+        <goal>sign</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-javadoc-plugin</artifactId>
+  <version>3.6.3</version>
+  <executions>
+    <execution>
+      <goals>
+        <goal>jar</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-source-plugin</artifactId>
+  <version>3.3.1</version>
+  <executions>
+    <execution>
+      <goals>
+        <goal>jar-no-fork</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+```
+Now, let's run the deployment process again:
+```shell
+mvn -B -ntp deploy
+```
+#### Add missing information
 
 #### maven-release-plugin
 You can safely 
