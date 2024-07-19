@@ -1,5 +1,5 @@
 # How to publish to Maven Central
-_as of June 2024_; based on material from [Maven Central](https://central.sonatype.org/register/central-portal/)
+_as of June 2024_; based on material from [Maven Central][central:how-to-publish]
 
 ## Prerequisites
 This guide aims at making it as easy as possible for you to publish your first artifact.  
@@ -12,7 +12,7 @@ While it's absolutely possible to deviate from this approach, this guide assumes
 ## Step-by-step guide
 
 ### Register at Sonatype central
-Hop on over to the [Maven Central repository](https://central.sonatype.com/api/auth/login), and login via GitHub.
+Hop on over to the [Maven Central repository][central:login], and login via GitHub.
 This registers the **io.github._your-username_** namespace for you,
 allowing you to publish artifacts matching this namespace.
 
@@ -27,7 +27,7 @@ Since you don't want to share your credentials by listing them in the project's 
 these are put into the Maven settings, which are usually located at `~/.m2/settings.xml`.
 
 As credentials, you'll be using a user token:
-1. go to [your account](https://central.sonatype.com/account) on the Central Publisher Portal
+1. go to [your account][central:account] on the Central Publisher Portal
 1. click the button "Generate User Token"
 1. copy the code snippet
 1. add it to your existing Maven settings, or create a new file containing
@@ -189,6 +189,8 @@ You can safely
 #### Manually
 #### via GitHub action
 
-
-[gpg:sign]: https://maven.apache.org/plugins/maven-gpg-plugin/sign-mojo.html
+[central:account]: https://central.sonatype.com/account
 [central:deployments]: https://central.sonatype.com/publishing/deployments
+[central:login]: https://central.sonatype.com/api/auth/login
+[central:how-to-publish]: https://central.sonatype.org/register/central-portal/
+[gpg:sign]: https://maven.apache.org/plugins/maven-gpg-plugin/sign-mojo.html
