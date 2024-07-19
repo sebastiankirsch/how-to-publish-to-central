@@ -1,5 +1,5 @@
 # How to publish to Maven Central
-_as of June 2024_; based on material from [Maven Central][central:how-to-publish]
+_as of June 2024; based on material from [Maven Central][central:how-to-publish]_
 
 ## Prerequisites
 This guide aims at making it as easy as possible for you to publish your first artifact.  
@@ -174,7 +174,7 @@ The [_Deployments_ section][central:deployments] will now show a _Validated_ dep
 ## Automate the release process
 For a more automated release process, we want the version numbering handled and have the released code tagged.
 
-👷 coming soon
+> 👷 coming soon
 
 ### maven-release-plugin
 
@@ -191,7 +191,7 @@ For a more automated release process, we want the version numbering handled and 
 ```
 
 ## Release with GitHub Actions
-👷 coming soon
+> 👷 coming soon
 
 [central:account]: https://central.sonatype.com/account
 [central:deployments]: https://central.sonatype.com/publishing/deployments
