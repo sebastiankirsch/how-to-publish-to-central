@@ -31,32 +31,36 @@ As credentials, you'll be using a user token:
 1. click the button "Generate User Token"
 1. copy the code snippet
 1. add it to your existing Maven settings, or create a new file containing
-    
-       <?xml version="1.0" encoding="UTF-8"?>
-       <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-         <servers>
-           <server>
-             <id>central</id>
-             <username>...</username>
-             <password>...</password>
-           </server>
-         </servers>
-       </settings>
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+     <servers>
+       <server>
+         <id>central</id>
+         <username>...</username>
+         <password>...</password>
+       </server>
+     </servers>
+   </settings>
+   ```
 
 ### Set up artifact signing
 Since you're using a Linux machine, `gpg` should be available.
 
 1. create a key pair:
-
-       gpg --batch --passphrase '' --quick-gen-key "your-username@users.noreply.github.com"
+   ```shell
+   gpg --batch --passphrase '' --quick-gen-key "your-username@users.noreply.github.com"
+   ```
 1. Note down the keyid (the hexadecimal code, usually the second line)
-
-       gpg -k your-username@users.noreply.github.com
+   ```shell
+   gpg -k your-username@users.noreply.github.com
+   ```
 1. Distribute your public key
-
-       gpg --keyserver keys.openpgp.org --send-keys YOUR-KEYID
+   ```shell
+   gpg --keyserver keys.openpgp.org --send-keys YOUR-KEYID
+   ```
 
 > [!NOTE]
 > When using GitHub actions to publish, you have to "hand out" both key & passphrase anyway,
@@ -68,8 +72,7 @@ Now, your Maven project needs to be configured with a number of plugins.
 Personally, I like to configure plugins only 
 
 #### central-publishing-maven-plugin
-We'll start with `central-publishing-maven-plugin`, which will upload the artifacts to the maven central repository: 
-
+We'll start with `central-publishing-maven-plugin`, which will upload the artifacts to the maven central repository:
 ```xml
 <plugin>
   <groupId>org.sonatype.central</groupId>
