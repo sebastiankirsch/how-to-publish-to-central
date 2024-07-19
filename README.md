@@ -145,8 +145,14 @@ mvn -B -ntp deploy
 ```
 
 > [!NOTE]
-> Chances are that generating the Javadoc fails.
-> Fix any errors that occur.
+> Chances are that generating the Javadoc fails. Fix any errors that occur.
+
+> [!TIP]
+> If you happen to have multiple GPG keys, you might have to configure the correct key to use
+> (an indicator for that is Sonatype complaining with _"Invalid signature for file"_).  
+> There are [several options to do this][gpg:sign];
+> using `-Dgpg.keyname=...` when calling Maven is suggested for now:
+> when automating the release later on, only one key will be available. 
 
 #### Add missing information
 
@@ -168,3 +174,6 @@ You can safely
 ### Releasing
 #### Manually
 #### via GitHub action
+
+
+[gpg:sign]: https://maven.apache.org/plugins/maven-gpg-plugin/sign-mojo.html
