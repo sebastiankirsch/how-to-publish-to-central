@@ -155,6 +155,13 @@ mvn -B -ntp deploy
 > when automating the release later on, only one key will be available. 
 
 #### Add missing information
+The Maven execution is probably still going to fail, since some information in the POM is missing.
+Sonatype requires you to provide
+* a project description
+* a project URL
+* a license
+* developers information
+* an SCM URL
 
 #### maven-release-plugin
 You can safely 

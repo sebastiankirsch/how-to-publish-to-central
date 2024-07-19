@@ -5,6 +5,24 @@
     <groupId>io.github.sebastiankirsch.edu</groupId>
     <artifactId>how-to-publish-to-central</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <description>A sample project used to demonstrate how to publish to Maven Central</description>
+    <url>https://github.com/sebastiankirsch/how-to-publish-to-central</url>
+    <developers>
+        <developer>
+            <name>Sebastian Kirsch</name>
+            <url>https://github.com/sebastiankirsch</url>
+        </developer>
+    </developers>
+    <licenses>
+        <license>
+            <name>Apache License Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <url>${project.url}</url>
+    </scm>
 
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
