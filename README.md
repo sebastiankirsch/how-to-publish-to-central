@@ -156,6 +156,7 @@ mvn -B -ntp deploy
 #### Add missing information
 The Maven execution is probably still going to fail, since some information in the POM is missing.
 Sonatype requires you to provide
+[<sup>_(click here to see what I've added)_</sup>][diff:missing-info]
 * a project description
 * a project URL
 * a license
@@ -193,4 +194,5 @@ You can safely
 [central:deployments]: https://central.sonatype.com/publishing/deployments
 [central:login]: https://central.sonatype.com/api/auth/login
 [central:how-to-publish]: https://central.sonatype.org/register/central-portal/
+[diff:missing-info]: https://github.com/sebastiankirsch/how-to-publish-to-central/commit/6df181aa96828122458eaf264a872260d8beb29e#diff-9c5fb3d1b7e3b0f54bc5c4182965c4fe1f9023d449017cece3005d3f90e8e4d8
 [gpg:sign]: https://maven.apache.org/plugins/maven-gpg-plugin/sign-mojo.html
