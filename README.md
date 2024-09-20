@@ -30,21 +30,23 @@ As credentials, you'll be using a user token:
 1. go to [your account][central:account] on the Central Publisher Portal
 1. click the button "Generate User Token"
 1. copy the code snippet
-1. add it to your existing Maven settings, or create a new file containing
-   ```xml
-   <?xml version="1.0" encoding="UTF-8"?>
-   <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-     <servers>
-       <server>
-         <id>central</id>
-         <username>...</username>
-         <password>...</password>
-       </server>
-     </servers>
-   </settings>
-   ```
+1. add it to your existing [Maven settings][maven:settings], or create a new file containing
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <servers>
+    <server>
+      <id>central</id>
+      <username>...</username>
+      <password>...</password>
+    </server>
+  </servers>
+</settings>
+```
+> [!TIP]
+> Consider using [Maven password encryption][maven:pw-encryption] for storing these credentials.
 
 ### Set up artifact signing
 Since you're using a Linux machine, `gpg` should be available.
