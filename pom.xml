@@ -4,7 +4,7 @@
 
     <groupId>io.github.sebastiankirsch.edu</groupId>
     <artifactId>how-to-publish-to-central</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <description>A sample project used to demonstrate how to publish to Maven Central</description>
     <url>https://github.com/sebastiankirsch/how-to-publish-to-central</url>
     <developers>
@@ -23,7 +23,7 @@
     <scm>
         <url>${project.url}</url>
         <connection>scm:git:https://github.com/sebastiankirsch/how-to-publish-to-central.git</connection>
-      <tag>v1.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <properties>
