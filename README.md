@@ -273,8 +273,10 @@ You may drill into the details, or just wait until the process has finished.
 
 Once again, Maven Central repository's [_Deployments_ section][central:deployments] will show a _VALIDATED_ deployment.
 
-### Final adaptations
+### Final adaptation
+For a fully automated release, set the `autoPublish` parameter to `true`. 💪
 
+Now you're all set - go ahead, release your stuff, change the world!
 
 [central:account]: https://central.sonatype.com/account
 [central:deployments]: https://central.sonatype.com/publishing/deployments
