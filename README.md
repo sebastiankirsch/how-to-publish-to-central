@@ -168,32 +168,113 @@ Sonatype requires you to provide
 ### Adapt the version
 The only remaining thing to do is adapt the version, since `SNAPSHOT` versions cannot be released.
 Go ahead and adapt the version. Now if you run the Maven command again, you should have a successful build.
-The [_Deployments_ section][central:deployments] will now show a _Validated_ deployment.
+The [_Deployments_ section][central:deployments] will now show a _VALIDATED_ deployment.
 
 > [!TIP]
 > If you think everything's working out, you can go ahead and publish your artifact now! 🎉 
 
 ## Automate the release process
 For a more automated release process, we want the version numbering handled and have the released code tagged.
+We'll use the `maven-release-plugin` for this.
 
-> 👷 coming soon
-
-### maven-release-plugin
-
+### Maven configuration
+We pin the version of the `maven-release-plugin` and overwrite some defaults:
 ```xml
-<plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-release-plugin</artifactId>
-  <version>3.0.1</version>
-  <configuration>
-    <releaseProfiles>release</releaseProfiles>
-    <tagNameFormat>v@{project.version}</tagNameFormat>
-  </configuration>
-</plugin>
+<pluginManagement>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-release-plugin</artifactId>
+      <version>3.1.1</version>
+       <configuration>
+          <arguments>-ntp</arguments>
+          <scmCommentPrefix />
+          <tagNameFormat>v@{project.version}</tagNameFormat>
+       </configuration>
+    </plugin>
+  </plugins>
+</pluginManagement>
 ```
 
-## Release with GitHub Actions
-> 👷 coming soon
+And, if not done so already, you need to set the SCM connection in the POM:
+```xml
+<scm>
+  <connection>scm:git:https://github.com/your-username/your-repository.git</connection>
+</scm>
+```
+
+### Set up the GitHub action
+As an execution engine, we'll use GitHub Actions.
+So let's create the file `.github/workflows/release.yml`:
+```yaml
+name: Release
+on:
+  workflow_dispatch:
+jobs:
+  release:
+    permissions:
+      contents: write # to manage the POM's version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check-out
+        uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: maven
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          server-id: central
+          server-username: SONATYPE_USERNAME
+          server-password: SONATYPE_TOKEN
+      - name: Release with Maven
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mvn -B -ntp -Dstyle.color=always release:prepare
+          VERSION=`cat release.properties | grep scm.tag= | cut -d'=' -f2`
+          mvn -B -ntp -Dstyle.color=always release:perform
+          echo "Released ${VERSION} 🚀" >> $GITHUB_STEP_SUMMARY
+        env:
+          GPG_PASSPHRASE: ''
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_TOKEN: ${{ secrets.SONATYPE_TOKEN }}
+````
+
+### Set up secrets
+The script refers to 3 secrets that need to be set up before the workflow can successfully run:
+the GPG private key for artifact signing, and the Sonatype credentials for publishing.  
+To do so,
+1. in your GitHub repository, navigate to _Settings/Secrets and variables/Actions_
+1. click on _New repository secret"
+   1. put `SONATYPE_USERNAME` into the _Name_ field
+   1. put your username into the _Value_ field
+   1. store the secret by hitting _Add secret_
+1. now create a secret for `SONATYPE_TOKEN` following the same steps
+1. now create a secret for `GPG_PRIVATE_KEY`
+   1. for the _Value_ field, paste the data returned by
+      ```shell
+      gpg --export-secret-keys --armor YOUR-KEYID
+      ```
+
+> [!TIP]
+> If your GPG key requires a pass phrase, simply add that as a secret as well, and adapt the `release.yml` accordingly.
+
+### Run the GH action
+We're all set to release!  
+In your GitHub repository,
+go to _Actions_,
+click on _Release_ in the left panel,
+select _Run workflow_ on the right,
+and finally click _Run workflow_ in the pop up.
+It'll take a few seconds, then the _workflow run_ will appear.
+You may drill into the details, or just wait until the process has finished.
+
+Once again, Maven Central repository's [_Deployments_ section][central:deployments] will show a _VALIDATED_ deployment.
+
+### Final adaptations
+
 
 [central:account]: https://central.sonatype.com/account
 [central:deployments]: https://central.sonatype.com/publishing/deployments
@@ -201,3 +282,5 @@ For a more automated release process, we want the version numbering handled and 
 [central:how-to-publish]: https://central.sonatype.org/register/central-portal/
 [diff:missing-info]: https://github.com/sebastiankirsch/how-to-publish-to-central/commit/6df181aa96828122458eaf264a872260d8beb29e#diff-9c5fb3d1b7e3b0f54bc5c4182965c4fe1f9023d449017cece3005d3f90e8e4d8
 [gpg:sign]: https://maven.apache.org/plugins/maven-gpg-plugin/sign-mojo.html
+[maven:pw-encryption]: https://maven.apache.org/guides/mini/guide-encryption.html
+[maven:settings]: https://maven.apache.org/settings.html
