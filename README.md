@@ -186,11 +186,11 @@ We pin the version of the `maven-release-plugin` and overwrite some defaults:
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-release-plugin</artifactId>
       <version>3.1.1</version>
-       <configuration>
-          <arguments>-ntp</arguments>
-          <scmCommentPrefix />
-          <tagNameFormat>v@{project.version}</tagNameFormat>
-       </configuration>
+      <configuration>
+        <arguments>-ntp</arguments>
+        <scmCommentPrefix />
+        <tagNameFormat>v@{project.version}</tagNameFormat>
+      </configuration>
     </plugin>
   </plugins>
 </pluginManagement>
@@ -240,7 +240,7 @@ jobs:
           GPG_PASSPHRASE: ''
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_TOKEN: ${{ secrets.SONATYPE_TOKEN }}
-````
+```
 
 ### Set up secrets
 The script refers to 3 secrets that need to be set up before the workflow can successfully run:
